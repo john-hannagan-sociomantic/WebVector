@@ -6,11 +6,13 @@
 package org.burgetr.webvector;
 
 import java.io.FileOutputStream;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.CancellationException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.prefs.Preferences;
 
 import org.fit.cssbox.demo.ImageRenderer;
 
@@ -410,7 +412,11 @@ public class WebVector
             {
                 public void actionPerformed(java.awt.event.ActionEvent e)
                 {
-                    JFileChooser chooser = new JFileChooser();
+                    Preferences prefs = Preferences.userRoot().node(getClass().getName());
+
+                    JFileChooser chooser = new JFileChooser(
+                        prefs.get( "last_used_url_folder", new File(".").getAbsolutePath())
+                    );
                     chooser.setDialogTitle("Source file");
                     chooser.setAcceptAllFileFilterUsed(true);
                     FileFilter fhtml = new FileNameExtensionFilter("(X)HTML Files", "html");
@@ -421,8 +427,8 @@ public class WebVector
                     {
                         String path = chooser.getSelectedFile().getAbsolutePath();
                         urlText.setText("file://" + path);
+                        prefs.put( "last_used_url_folder", chooser.getSelectedFile().getParent());
                     }
-
                 }
             });
         }
@@ -444,7 +450,12 @@ public class WebVector
             {
                 public void actionPerformed(java.awt.event.ActionEvent e)
                 {
-                    JFileChooser chooser = new JFileChooser();
+                    Preferences prefs = Preferences.userRoot().node(getClass().getName());
+
+                    JFileChooser chooser = new JFileChooser(
+                        prefs.get( "last_used_dest_folder", new File(".").getAbsolutePath())
+                    );
+
                     chooser.setDialogTitle("Destination file");
                     chooser.setAcceptAllFileFilterUsed(false);
                     FileFilter fall = new FileNameExtensionFilter("All supported images", "svg", "png");
@@ -459,6 +470,7 @@ public class WebVector
                     {
                         String path = chooser.getSelectedFile().getAbsolutePath();
                         destText.setText(path);
+                        prefs.put( "last_used_dest_folder", chooser.getSelectedFile().getParent());
                     }
                 }
             });
