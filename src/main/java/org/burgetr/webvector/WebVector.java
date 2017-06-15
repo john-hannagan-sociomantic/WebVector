@@ -52,8 +52,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- * This is a wrapper class for calling the CSSBox ImageRenderer demo. 
- * 
+ * This is a wrapper class for calling the CSSBox ImageRenderer demo.
+ *
  * @author burgetr
  */
 public class WebVector
@@ -87,11 +87,8 @@ public class WebVector
     private JCheckBox chkCropWindow;
     private JLabel mediaLabel;
     private JComboBox<String> mediaCombo;
-    
-    
-    /**
-     * @wbp.parser.entryPoint
-     */
+
+
     public WebVector()
     {
         mainFrame = getMainFrame();
@@ -102,14 +99,14 @@ public class WebVector
     private void validateForm()
     {
         boolean valid = true;
-        
+
         String urls = urlText.getText();
         if (urls.isEmpty() || urls.equals("http://"))
         {
             valid = false;
             statusText.setText("Enter source URL");
         }
-        
+
         if (valid)
         {
             try {
@@ -119,7 +116,7 @@ public class WebVector
                 statusText.setText("Invalid URL");
             }
         }
-        
+
         if (valid)
         {
             if (destText.getText().isEmpty())
@@ -128,26 +125,26 @@ public class WebVector
                 statusText.setText("Choose a destination file");
             }
         }
-        
+
         if (valid)
             statusText.setText("Waiting for start");
-        
+
         statusText.setForeground(valid ? Color.BLACK : Color.RED);
         startButton.setEnabled(valid);
     }
-    
+
     private Dimension getWindowSize()
     {
         return new Dimension((Integer) wwSpinner.getValue(), (Integer) whSpinner.getValue());
     }
-    
+
     private void execTransformation()
     {
         try {
             ImageRenderer.Type type = ImageRenderer.Type.SVG;
             if (pngRadio.isSelected())
                 type = ImageRenderer.Type.PNG;
-            
+
             worker = new TransformWorker(urlText.getText(), destText.getText(),
                     type, mediaCombo.getSelectedItem().toString(), getWindowSize(), chkCropWindow.isSelected(),
                     chkLoadImages.isSelected(), chkLoadBackgroundImages.isSelected());
@@ -166,7 +163,7 @@ public class WebVector
                                     worker.get();
                                     JOptionPane.showMessageDialog(mainFrame, "Rendering succeeded.", "Finished", JOptionPane.INFORMATION_MESSAGE);
                                 } catch (final CancellationException e) {
-                                      
+
                                 } catch (final Exception e) {
                                     JOptionPane.showMessageDialog(mainFrame, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                                     e.printStackTrace();
@@ -182,21 +179,21 @@ public class WebVector
                         }
                     }
                 }
-            });            
-            
+            });
+
             worker.execute();
-            
+
         } catch (Exception e) {
             startButton.setEnabled(true);
             statusText.setText("Error");
             JOptionPane.showMessageDialog(mainFrame, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     /**
-     * This method initializes mainFrame	
-     * 	
-     * @return javax.swing.JFrame	
+     * This method initializes mainFrame
+     *
+     * @return javax.swing.JFrame
      */
     private JFrame getMainFrame()
     {
@@ -211,9 +208,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes mainPanel	
-     * 	
-     * @return javax.swing.JPanel	
+     * This method initializes mainPanel
+     *
+     * @return javax.swing.JPanel
      */
     private JPanel getMainPanel()
     {
@@ -310,11 +307,11 @@ public class WebVector
         }
         return mainPanel;
     }
-    
+
     /**
-     * This method initializes urlText	
-     * 	
-     * @return javax.swing.JTextField	
+     * This method initializes urlText
+     *
+     * @return javax.swing.JTextField
      */
     private JTextField getUrlText()
     {
@@ -335,9 +332,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes destText	
-     * 	
-     * @return javax.swing.JTextField	
+     * This method initializes destText
+     *
+     * @return javax.swing.JTextField
      */
     private JTextField getDestText()
     {
@@ -358,9 +355,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes statusText	
-     * 	
-     * @return javax.swing.JTextField	
+     * This method initializes statusText
+     *
+     * @return javax.swing.JTextField
      */
     private JTextField getStatusText()
     {
@@ -375,9 +372,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes startButton	
-     * 	
-     * @return javax.swing.JButton	
+     * This method initializes startButton
+     *
+     * @return javax.swing.JButton
      */
     private JButton getStartButton()
     {
@@ -398,9 +395,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes browseUrlButton	
-     * 	
-     * @return javax.swing.JButton	
+     * This method initializes browseUrlButton
+     *
+     * @return javax.swing.JButton
      */
     private JButton getBrowseUrlButton()
     {
@@ -424,8 +421,8 @@ public class WebVector
                     {
                         String path = chooser.getSelectedFile().getAbsolutePath();
                         urlText.setText("file://" + path);
-                    }               
-                    
+                    }
+
                 }
             });
         }
@@ -433,9 +430,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes browseDestButton	
-     * 	
-     * @return javax.swing.JButton	
+     * This method initializes browseDestButton
+     *
+     * @return javax.swing.JButton
      */
     private JButton getBrowseDestButton()
     {
@@ -462,7 +459,7 @@ public class WebVector
                     {
                         String path = chooser.getSelectedFile().getAbsolutePath();
                         destText.setText(path);
-                    }               
+                    }
                 }
             });
         }
@@ -470,9 +467,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes typePanel	
-     * 	
-     * @return javax.swing.JPanel	
+     * This method initializes typePanel
+     *
+     * @return javax.swing.JPanel
      */
     private JPanel getTypePanel()
     {
@@ -494,9 +491,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes svgRadio	
-     * 	
-     * @return javax.swing.JRadioButton	
+     * This method initializes svgRadio
+     *
+     * @return javax.swing.JRadioButton
      */
     private JRadioButton getSvgRadio()
     {
@@ -527,9 +524,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes pngRadio	
-     * 	
-     * @return javax.swing.JRadioButton	
+     * This method initializes pngRadio
+     *
+     * @return javax.swing.JRadioButton
      */
     private JRadioButton getPngRadio()
     {
@@ -542,9 +539,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes buttonPanel	
-     * 	
-     * @return javax.swing.JPanel	
+     * This method initializes buttonPanel
+     *
+     * @return javax.swing.JPanel
      */
     private JPanel getButtonPanel()
     {
@@ -567,9 +564,9 @@ public class WebVector
     }
 
     /**
-     * This method initializes closeButton	
-     * 	
-     * @return javax.swing.JButton	
+     * This method initializes closeButton
+     *
+     * @return javax.swing.JButton
      */
     private JButton getCloseButton()
     {
@@ -707,14 +704,14 @@ public class WebVector
         }
         return mediaCombo;
     }
-    
+
     public static void main(String[] args)
     {
         if (args.length == 0)
         {
             SwingUtilities.invokeLater(new Runnable()
             {
-                public void run() 
+                public void run()
                 {
                     new WebVector();
                 }
@@ -759,7 +756,7 @@ public class WebVector
                     System.err.println("Error: unknown format");
                     System.exit(1);
                 }
-                
+
                 //decode media
                 String media = "screen";
                 Dimension windowSize = new Dimension(1200, 600);
@@ -772,7 +769,7 @@ public class WebVector
                     if (ok)
                     {
                         media = matcher.group(1);
-                        
+
                         int ww = windowSize.width;
                         int wh = windowSize.height;
                         try {
@@ -787,22 +784,22 @@ public class WebVector
                         if ("!".equals(matcher.group(5)))
                             cropWindow = true;
                     }
-                    
+
                     if (!ok)
                     {
                         System.err.println("Error: invalid media specification");
                         System.exit(2);
                     }
                 }
-                
-                
+
+
                 FileOutputStream os = new FileOutputStream(args[1]);
-                
+
                 ImageRenderer r = new ImageRenderer();
                 r.setMediaType(media);
                 r.setWindowSize(windowSize, cropWindow);
                 r.renderURL(args[0], os, type);
-                
+
                 os.close();
                 System.err.println("Done.");
             } catch (Exception e) {
@@ -810,5 +807,5 @@ public class WebVector
             }
         }
     }
-    
+
 }
