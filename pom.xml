@@ -45,7 +45,30 @@
 
 		<plugins>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<executions>
+					<execution>
+					<id>install-external</id>
+					<phase>clean</phase>
+					<configuration>
+						<file>${project.basedir}/../cssbox/target/cssbox-4.12-jar-with-dependencies.jar</file>
+						<repositoryLayout>default</repositoryLayout>
+						<groupId>net.sf.cssbox</groupId>
+						<artifactId>cssbox</artifactId>
+						<version>4.12</version>
+						<packaging>jar</packaging>
+						<generatePom>true</generatePom>
+					</configuration>
+					<goals>
+						<goal>install-file</goal>
+					</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		 	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
@@ -140,12 +163,20 @@
 
 	</build>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.cssbox</groupId>
 			<artifactId>cssbox</artifactId>
 			<version>4.12</version>
+			<!--<scope>system</scope>
+			<systemPath>${project.basedir}/../cssbox/target/cssbox-4.12.jar</systemPath>-->
 		</dependency>
+		<!--<dependency>
+			<groupId>net.sf.cssbox</groupId>
+			<artifactId>cssbox</artifactId>
+			<version>4.12</version>
+		</dependency>-->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
