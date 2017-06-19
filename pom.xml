@@ -163,20 +163,12 @@
 
 	</build>
 
-
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.cssbox</groupId>
 			<artifactId>cssbox</artifactId>
 			<version>4.12</version>
-			<!--<scope>system</scope>
-			<systemPath>${project.basedir}/../cssbox/target/cssbox-4.12.jar</systemPath>-->
 		</dependency>
-		<!--<dependency>
-			<groupId>net.sf.cssbox</groupId>
-			<artifactId>cssbox</artifactId>
-			<version>4.12</version>
-		</dependency>-->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
