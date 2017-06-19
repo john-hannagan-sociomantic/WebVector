@@ -682,7 +682,7 @@ public class WebVector
         if (whSpinner == null)
         {
             whSpinner = new JSpinner();
-            whSpinner.setModel(new SpinnerNumberModel(new Integer(600),
+            whSpinner.setModel(new SpinnerNumberModel(new Integer(2500),
                     new Integer(100), null, new Integer(10)));
         }
         return whSpinner;
